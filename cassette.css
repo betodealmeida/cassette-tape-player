@@ -67,6 +67,17 @@ svg {
   stroke: var(--label-color);
 }
 
+#play-button {
+  stroke: var(--background);
+  fill: var(--background);
+}
+
+#pause-button {
+  display: none;
+  stroke: var(--background);
+  fill: var(--background);
+}
+
 svg .hole {
   stroke: var(--background);
   fill: var(--background);

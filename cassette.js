@@ -88,6 +88,45 @@ function addCassetteSVG(audio) {
     gear.setAttributeNS(null, "r", 5);
   }
 
+  // add play button
+  const playButton = document.createElementNS(xmlns, "path");
+  svg.appendChild(playButton);
+  playButton.setAttributeNS(null, "d", "M47 48 53 51 47 54 z");
+  playButton.setAttributeNS(null, "id", "play-button");
+  playButton.setAttributeNS(null, "stroke-width", "2");
+  playButton.setAttributeNS(null, "stroke-linecap", "square");
+  playButton.setAttributeNS(null, "stroke-linejoin", "round");
+
+  // add pause button
+  const pauseButton = document.createElementNS(xmlns, "g");
+  svg.appendChild(pauseButton);
+  pauseButton.setAttributeNS(null, "id", "pause-button");
+  pauseButton.setAttributeNS(null, "pointer-events", "bounding-box");
+  for (let i = 0; i < 2; i++) {
+    const bar = document.createElementNS(xmlns, "line");
+    pauseButton.appendChild(bar);
+    bar.setAttributeNS(null, "class", "pause-button");
+    bar.setAttributeNS(null, "x1", 47.5 + i * 5);
+    bar.setAttributeNS(null, "y1", "47.5");
+    bar.setAttributeNS(null, "x2", 47.5 + i * 5);
+    bar.setAttributeNS(null, "y2", "54.5");
+    bar.setAttributeNS(null, "stroke-width", "2.25");
+  }
+
+  const togglePlay = () => {
+    if (audio.paused) {
+      playButton.style.display = "none";
+      pauseButton.style.display = "inherit";
+      audio.play();
+    } else {
+      playButton.style.display = "inherit";
+      pauseButton.style.display = "none";
+      audio.pause();
+    }
+  };
+  playButton.addEventListener("click", togglePlay);
+  pauseButton.addEventListener("click", togglePlay);
+
   // add bottom holes
   for (let i = 0; i < 2; i++) {
     const roundHole = document.createElementNS(xmlns, "circle");
