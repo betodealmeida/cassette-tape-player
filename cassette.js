@@ -173,14 +173,20 @@ function addCassetteSVG(audio) {
   audio.addEventListener("play", (event) => {
     leftSpool.style.animationPlayState = "running";
     rightSpool.style.animationPlayState = "running";
+    playButton.style.display = "none";
+    pauseButton.style.display = "inherit";
   });
   audio.addEventListener("pause", (event) => {
     leftSpool.style.animationPlayState = "paused";
     rightSpool.style.animationPlayState = "paused";
+    playButton.style.display = "inherit";
+    pauseButton.style.display = "none";
   });
   audio.addEventListener("ended", (event) => {
     leftSpool.style.animationPlayState = "paused";
     rightSpool.style.animationPlayState = "paused";
+    playButton.style.display = "inherit";
+    pauseButton.style.display = "none";
   });
 
   // update spool sizes
