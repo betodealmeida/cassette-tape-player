@@ -1,0 +1,93 @@
+svg {
+  --tape-hue: 180;
+  --tape-saturation: 100%;
+  --tape-value: 13%;
+  --lighten-percentage: 7%;
+
+  --label-color: #eee;
+  --pen-color: #222;
+  --background: #eee;
+  --lines: #aaa;
+
+  --main-color: hsl(var(--tape-hue), var(--tape-saturation), var(--tape-value));
+  --light-color: hsl(var(--tape-hue), var(--tape-saturation), calc(var(--tape-value) + var(--lighten-percentage)));
+}
+
+@keyframes wobble1 {
+  from {
+    transform: translateX(0.2px);
+  }
+
+  to {
+    transform: translateX(-0.2px);
+  }
+}
+
+@keyframes wobble2 {
+  from {
+    transform: translateX(0.2px);
+  }
+
+  to {
+    transform: translateX(-0.2px);
+  }
+}
+
+#left-spool {
+  animation: 1s infinite alternate wobble2;
+  animation-play-state: paused;
+  transform-box: fill-box;
+  fill: black;
+}
+
+#right-spool {
+  animation: 1.3s infinite alternate wobble1;
+  animation-play-state: paused;
+  transform-box: fill-box;
+  fill: black;
+}
+
+#cassette-body {
+  fill: var(--main-color);
+  stroke: var(--main-color);
+}
+
+#cassette-bottom {
+  fill: var(--light-color);
+  stroke: var(--light-color);
+}
+
+#cassette-center {
+  fill: var(--main-color);
+  stroke: var(--main-color);
+}
+
+#paper-label {
+  fill: var(--label-color);
+  stroke: var(--label-color);
+}
+
+svg .hole {
+  stroke: var(--background);
+  fill: var(--background);
+}
+
+svg .label-lines {
+  stroke: var(--lines);
+}
+
+svg .gears {
+  fill: var(--light-color);
+  ;
+}
+
+svg .cassette-label {
+  font-size: 5px;
+  font-family: 'Permanent Marker', cursive;
+  fill: var(--pen-color);
+}
+
+#player {
+  width: 640px;
+  padding: 0;
+}
