@@ -166,13 +166,24 @@ function addCassetteSVG(audio) {
 
 function addPlayer(audio) {
   const svg = addCassetteSVG(audio);
-  svg.addEventListener("click", (event) => {
-    if (audio.paused) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  })
+  let dragging = false;
+  let lastX;
+  svg.addEventListener("mousedown", (event) => {
+    lastX = event.clientX;
+    dragging = true;
+  }, false);
+  svg.addEventListener("mouseout", (event) => {
+    if (!dragging) return;
+
+    const movement = (event.clientX - lastX) / svg.clientWidth;
+    audio.currentTime += audio.duration * movement;
+    dragging = false;
+  }, false);
+  svg.addEventListener("mouseup", (event) => {
+    const movement = (event.clientX - lastX) / svg.clientWidth;
+    audio.currentTime += audio.duration * movement;
+    dragging = false;
+  }, false);
 
   // insert before audio
   if (audio.dataset.targetId) {
