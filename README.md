@@ -33,3 +33,7 @@ Create an HTML file with an `<audio>` element:
   </body>
 </html>
 ```
+
+# Controls
+
+Pressing the triangle plays the song, and then pauses. Dragging the mouse forward or backward will seek in the song.
